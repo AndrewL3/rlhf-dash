@@ -2,9 +2,11 @@ import { useState } from 'react'
 import seedData from './data/seed.json'
 import type { Prompt, ActiveView } from './types'
 import { useAnnotationSession } from './hooks/useAnnotationSession'
+import { toJSONL, downloadJSONL } from './lib/export'
 import { Header } from './components/Header'
 import { ProgressBar } from './components/ProgressBar'
 import { RatingView } from './components/RatingView'
+import { AnalyticsView } from './components/AnalyticsView'
 
 const prompts = seedData as Prompt[]
 
@@ -12,10 +14,22 @@ export const App = () => {
   const [activeView, setActiveView] = useState<ActiveView>('rating')
   const session = useAnnotationSession(prompts)
 
+  const canExport = session.completedAnnotations.some((a) => a.winner !== 'tie')
+
+  const handleExport = () => {
+    const content = toJSONL(session.completedAnnotations, prompts)
+    downloadJSONL(content)
+  }
+
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100">
       <div className="max-w-6xl mx-auto px-6 py-6 space-y-6">
-        <Header activeView={activeView} onSetView={setActiveView} />
+        <Header
+          activeView={activeView}
+          onSetView={setActiveView}
+          onExport={handleExport}
+          canExport={canExport}
+        />
         <ProgressBar
           completed={session.completedAnnotations.length}
           total={session.total}
@@ -44,7 +58,7 @@ export const App = () => {
             />
           )}
 
-        {session.isComplete && (
+        {activeView === 'rating' && session.isComplete && (
           <div className="text-center py-12">
             <p className="text-lg font-medium text-green-400">
               All prompts rated!
@@ -60,6 +74,13 @@ export const App = () => {
               Undo last
             </button>
           </div>
+        )}
+
+        {activeView === 'analytics' && (
+          <AnalyticsView
+            annotations={session.completedAnnotations}
+            prompts={prompts}
+          />
         )}
       </div>
     </div>
