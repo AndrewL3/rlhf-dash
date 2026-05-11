@@ -25,13 +25,13 @@ const DIMENSION_LABELS: Record<Dimension, string> = {
 export function ScoreDistribution({ annotations }: ScoreDistributionProps) {
   return (
     <div className="space-y-4">
-      <h3 className="text-sm font-medium text-gray-400">Score Distribution</h3>
+      <h3 className="text-sm font-semibold text-gray-300">Score Distribution</h3>
       <div className="grid grid-cols-2 gap-4">
         {DIMENSIONS.map((dimension) => {
           const data = scoreDistribution(annotations, dimension)
           return (
             <div key={dimension}>
-              <p className="text-xs text-gray-500 mb-2">
+              <p className="text-xs text-gray-400 mb-2">
                 {DIMENSION_LABELS[dimension]}
               </p>
               <ResponsiveContainer width="100%" height={140}>

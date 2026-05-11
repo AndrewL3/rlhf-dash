@@ -53,7 +53,7 @@ export function RatingView({
   })
 
   return (
-    <div className="space-y-6">
+    <div className="animate-fade-in">
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1">
           <PromptCard text={currentPrompt.text} domain={currentPrompt.domain} />
@@ -61,23 +61,27 @@ export function RatingView({
         <Timer timeElapsed={timeElapsed} />
       </div>
 
-      <ResponsePanel
-        left={displayOrder.left}
-        right={displayOrder.right}
-        scores={scores}
-        flags={flags}
-        onSetScore={onSetScore}
-        onToggleFlag={onToggleFlag}
-      />
+      <div className="mt-6">
+        <ResponsePanel
+          left={displayOrder.left}
+          right={displayOrder.right}
+          scores={scores}
+          flags={flags}
+          onSetScore={onSetScore}
+          onToggleFlag={onToggleFlag}
+        />
+      </div>
 
-      <WinnerSelector winner={winner} onSetWinner={onSetWinner} />
-
-      <ActionBar
-        onSubmit={onSubmit}
-        onUndo={onUndo}
-        canSubmit={winner !== null}
-        canUndo={canUndo}
-      />
+      <div className="mt-8 pt-6 border-t border-gray-800/50 flex items-center justify-center gap-6">
+        <WinnerSelector winner={winner} onSetWinner={onSetWinner} />
+        <div className="w-px h-8 bg-gray-800" />
+        <ActionBar
+          onSubmit={onSubmit}
+          onUndo={onUndo}
+          canSubmit={winner !== null}
+          canUndo={canUndo}
+        />
+      </div>
     </div>
   )
 }

@@ -12,10 +12,16 @@ interface AnalyticsViewProps {
 export function AnalyticsView({ annotations, prompts }: AnalyticsViewProps) {
   if (annotations.length === 0) {
     return (
-      <div className="text-center py-16">
-        <p className="text-gray-500">
-          Complete some annotations to see analytics.
+      <div className="py-16 max-w-sm mx-auto">
+        <p className="text-sm text-gray-400">
+          Analytics populate as you annotate:
         </p>
+        <ul className="mt-3 space-y-1.5 text-sm text-gray-500">
+          <li>Score distributions across all four dimensions</li>
+          <li>Win rates by model</li>
+          <li>Flag frequency breakdown</li>
+          <li>Timing stats (avg &amp; median per annotation)</li>
+        </ul>
       </div>
     )
   }

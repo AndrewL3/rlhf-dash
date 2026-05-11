@@ -45,7 +45,7 @@ describe('AnalyticsView', () => {
   it('renders empty state when no annotations', () => {
     render(<AnalyticsView annotations={[]} prompts={prompts} />)
     expect(
-      screen.getByText('Complete some annotations to see analytics.')
+      screen.getByText('Analytics populate as you annotate:')
     ).toBeInTheDocument()
   })
 

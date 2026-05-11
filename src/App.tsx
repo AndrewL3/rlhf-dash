@@ -6,6 +6,7 @@ import { toJSONL, downloadJSONL } from './lib/export'
 import { Header } from './components/Header'
 import { ProgressBar } from './components/ProgressBar'
 import { RatingView } from './components/RatingView'
+import { WelcomeGuide } from './components/WelcomeGuide'
 import { AnalyticsView } from './components/AnalyticsView'
 
 const prompts = seedData as Prompt[]
@@ -23,23 +24,29 @@ export const App = () => {
 
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100">
-      <div className="max-w-6xl mx-auto px-6 py-6 space-y-6">
-        <Header
-          activeView={activeView}
-          onSetView={setActiveView}
-          onExport={handleExport}
-          canExport={canExport}
-        />
-        <ProgressBar
-          completed={session.completedAnnotations.length}
-          total={session.total}
-        />
+      <div className="max-w-6xl mx-auto px-6 py-6">
+        <div className="space-y-3 pb-5 border-b border-gray-800/50">
+          <Header
+            activeView={activeView}
+            onSetView={setActiveView}
+            onExport={handleExport}
+            canExport={canExport}
+          />
+          <ProgressBar
+            completed={session.completedAnnotations.length}
+            total={session.total}
+          />
+        </div>
 
+        <main className="mt-8">
         {activeView === 'rating' &&
           session.currentPrompt &&
           session.displayOrder.left &&
           session.displayOrder.right && (
+            <>
+            <WelcomeGuide />
             <RatingView
+              key={session.currentPrompt.id}
               currentPrompt={session.currentPrompt}
               displayOrder={{
                 left: session.displayOrder.left,
@@ -56,6 +63,7 @@ export const App = () => {
               onUndo={session.undo}
               canUndo={session.completedAnnotations.length > 0}
             />
+            </>
           )}
 
         {activeView === 'rating' && session.isComplete && (
@@ -82,6 +90,7 @@ export const App = () => {
             prompts={prompts}
           />
         )}
+        </main>
       </div>
     </div>
   )

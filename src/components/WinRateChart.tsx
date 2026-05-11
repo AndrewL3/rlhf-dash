@@ -20,7 +20,7 @@ export function WinRateChart({ annotations, prompts }: WinRateChartProps) {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-sm font-medium text-gray-400">Wins</h3>
+      <h3 className="text-sm font-semibold text-gray-300">Wins</h3>
       {data.length === 0 ? (
         <p className="text-sm text-gray-600">No win data yet.</p>
       ) : (

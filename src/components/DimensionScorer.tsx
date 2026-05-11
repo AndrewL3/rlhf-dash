@@ -11,7 +11,7 @@ export function DimensionScorer({ scores, onSetScore }: DimensionScorerProps) {
     <div className="space-y-2">
       {DIMENSIONS.map((dim) => (
         <div key={dim} className="flex items-center gap-3">
-          <span className="text-xs text-gray-400 w-24">{dim}</span>
+          <span className="text-xs font-medium text-gray-400 w-24 capitalize">{dim}</span>
           <div className="flex gap-1">
             {[1, 2, 3, 4, 5].map((value) => (
               <button

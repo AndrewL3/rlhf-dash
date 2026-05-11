@@ -11,7 +11,7 @@ export function Header({ activeView, onSetView, onExport, canExport }: HeaderPro
   return (
     <header className="flex items-center justify-between">
       <div className="flex items-center gap-3">
-        <h1 className="text-xl font-bold text-gray-100">RLHF Annotation Dashboard</h1>
+        <h1 className="text-xl font-bold tracking-tight text-gray-100">RLHF Annotation Dashboard</h1>
         <button
           type="button"
           onClick={onExport}

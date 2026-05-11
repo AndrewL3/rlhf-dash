@@ -29,7 +29,7 @@ export function FlagBreakdown({ annotations }: FlagBreakdownProps) {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-sm font-medium text-gray-400">Flags</h3>
+      <h3 className="text-sm font-semibold text-gray-300">Flags</h3>
       <ResponsiveContainer width="100%" height={200}>
         <BarChart data={data} layout="vertical">
           <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
@@ -56,7 +56,7 @@ export function FlagBreakdown({ annotations }: FlagBreakdownProps) {
               color: '#fff',
             }}
           />
-          <Bar dataKey="count" fill="#3b82f6" radius={[0, 2, 2, 0]} />
+          <Bar dataKey="count" fill="#f59e0b" radius={[0, 2, 2, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>

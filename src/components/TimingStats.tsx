@@ -16,22 +16,22 @@ export function TimingStats({ annotations }: TimingStatsProps) {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-sm font-medium text-gray-400">Timing</h3>
+      <h3 className="text-sm font-semibold text-gray-300">Timing</h3>
       <div className="space-y-3">
         <div>
-          <p className="text-xs text-gray-500">Avg Time</p>
+          <p className="text-xs text-gray-400">Avg Time</p>
           <p className="text-lg font-mono tabular-nums text-gray-100">
             {formatTime(stats.avg)}
           </p>
         </div>
         <div>
-          <p className="text-xs text-gray-500">Median Time</p>
+          <p className="text-xs text-gray-400">Median Time</p>
           <p className="text-lg font-mono tabular-nums text-gray-100">
             {formatTime(stats.median)}
           </p>
         </div>
         <div>
-          <p className="text-xs text-gray-500">Completed</p>
+          <p className="text-xs text-gray-400">Completed</p>
           <p className="text-lg font-mono tabular-nums text-gray-100">
             {stats.count}
           </p>
